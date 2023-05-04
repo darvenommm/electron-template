@@ -1,0 +1,44 @@
+{
+  "name": "electron-template",
+  "version": "1.0.0",
+  "description": "My custom template for development with electron",
+  "main": "./.builds/main/main.js",
+  "author": "Denis Romodanov",
+  "scripts": {
+    "clear:builds": "rimraf .builds",
+    "backend:build": "tsc",
+    "backend:view": "electron ./.builds/main/main.js",
+    "backend:dev": "npm run clear:builds && npm run backend:build && cross-env MODE=development npm run backend:view",
+    "frontend:dev": "cross-env MODE=development webpack serve --config ./webpack.frontend.ts",
+    "frontend:prod": "cross-env MODE=production webpack --config ./webpack.frontend.ts",
+    "dev": "concurrently \"npm run frontend:dev\" \"sleep 3 && nodemon backend/main/main.ts\" -k",
+    "prod": "npm run clear:builds && npm run frontend:prod && npm run backend:build",
+    "make:win": "npm run prod && electron-builder build -w"
+  },
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@types/node": "^18.16.3",
+    "@types/react": "^18.2.5",
+    "@types/react-dom": "^18.2.3",
+    "@types/webpack": "^5.28.1",
+    "@types/webpack-dev-server": "^4.7.2",
+    "concurrently": "^7.0.1",
+    "cross-env": "^7.0.3",
+    "electron": "^24.2.0",
+    "electron-builder": "^23.6.0",
+    "esbuild-loader": "^3.0.1",
+    "html-webpack-plugin": "^5.5.1",
+    "nodemon": "^2.0.22",
+    "rimraf": "^5.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4",
+    "webpack": "^5.82.0",
+    "webpack-cli": "^5.0.2",
+    "webpack-dev-server": "^4.13.3"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

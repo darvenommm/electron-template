@@ -1,0 +1,5 @@
+{
+  "verbose": true,
+  "watch": "./backend",
+  "exec": "yarn backend:dev"
+}
